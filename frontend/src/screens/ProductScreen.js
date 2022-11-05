@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Rating from "../components/Rating";
 import { Helmet } from "react-helmet-async";
 import LoadingBox from "../components/LoadingBox";
@@ -28,6 +28,7 @@ const reducer = (state, action) => {
 };
 
 function ProductScreen () {
+    const navigate = useNavigate();
     const params = useParams ();
     const {slug} = params;
 
@@ -62,6 +63,7 @@ function ProductScreen () {
         return;
     }
         ctxDispatch({type: 'CART_ADD_ITEM', payload: { ...product, quantity },});
+        navigate('/cart');
     }
 
     return (
